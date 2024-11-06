@@ -410,23 +410,27 @@ This Quarkus-based WebSocket messaging application is ready to be deployed and t
 
 ### 1. Separation of Responsibilities into Three Modules
 
-+ Stateless API Services Module:
-	
-	Functionality: Manages non-real-time tasks such as media uploads, group management, user preferences, contact management, and user authentication.
-	
-	Advantages: This module can scale independently and doesn’t require persistent WebSocket connections, making it lightweight. Reduces complexity in the WebSocket-based modules, focusing on delivering high-quality API responses without the need for real-time guarantees.
++ Current Structure: The existing service manages multiple concerns, including message management, read receipts, delivery status, and acknowledgments.
 
-+ WebSocket-Based Messaging Module:
++ Proposed Solution: Separate these features into dedicated services or modules
 
-	Functionality: Handles actual chat messaging with persistent WebSocket connections, managing message sending and reception in real-time.
+	+ Stateless API Services Module:
 	
-	Advantages: Keeps real-time message handling separate, allowing for independent scaling to handle high-volume message traffic. Simplifies management of WebSocket connections and reduces complexity by focusing on real-time chat only.
-
-+  WebSocket-Based Acknowledgment Handling Module:
-
-	Functionality: Processes acknowledgment events like message delivery and read receipts, updating message statuses independently from message transmission.
+		Functionality: Manages non-real-time tasks such as media uploads, group management, user preferences, contact management, and user authentication.
 	
-	Advantages: Avoids delays in the main messaging service by asynchronously processing acknowledgments and updates. Allows for independent scaling to handle acknowledgment and status updates, ideal for systems with high message acknowledgment volumes.
+		Advantages: This module can scale independently and doesn’t require persistent WebSocket connections, making it lightweight. Reduces complexity in the WebSocket-based modules, focusing on delivering high-quality API responses without the need for real-time guarantees.
+
+	+ WebSocket-Based Messaging Module:
+
+		Functionality: Handles actual chat messaging with persistent WebSocket connections, managing message sending and reception in real-time.
+	
+		Advantages: Keeps real-time message handling separate, allowing for independent scaling to handle high-volume message traffic. Simplifies management of WebSocket connections and reduces complexity by focusing on real-time chat only.
+
+	+  WebSocket-Based Acknowledgment Handling Module:
+
+		Functionality: Processes acknowledgment events like message delivery and read receipts, updating message statuses independently from message transmission.
+	
+		Advantages: Avoids delays in the main messaging service by asynchronously processing acknowledgments and updates. Allows for independent scaling to handle acknowledgment and status updates, ideal for systems with high message acknowledgment volumes.
 
 ### 2. Enhanced Scalability and High-Volume Request Handling
 
