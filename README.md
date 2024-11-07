@@ -34,7 +34,7 @@ chatservice
 
 ---
 
-## Controllers
+## Controllers and most  commonly used API's
 
 ### 1. **AuthResource**(`co.vivo.chatservice.controller.AuthResource`)
 Handles user authentication, registration, and login.
@@ -43,9 +43,9 @@ Handles user authentication, registration, and login.
 - `/auth/login` - Login and receive JWT token for authentication.
 
 ### 2. **ChatSocket** (`co.vivo.chatservice.controller.ChatSocket`)
-Provides enhanced WebSocket endpoints for group messaging.
+Provides enhanced WebSocket endpoints for messaging.
 
-- `/chat/{userId}` - Group chat messaging endpoint.
+- `/chat/{userId}` - Chat messaging endpoint.
 
 ### 3. **MediaController** (`co.vivo.chatservice.controller.MediaController`)
 Manages media (images/videos) uploads.
